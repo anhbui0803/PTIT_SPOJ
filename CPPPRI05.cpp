@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int f[10001] = {0};
+
+void snt() {
+    f[0] = 1;
+    f[1] = 1;
+    for (int i = 2; i <= sqrt(10000); i++) {
+        if (f[i] == 0) {
+            for (int j = i * i; j <= 10000; j += i) {
+                if (f[j] == 0) f[j] = 1;
+            }
+        }
+    }
+}
+
+int main()
+{
+    int t;
+    cin >> t;
+    snt();
+    while (t--) {
+        int l, r;
+        cin >> l >> r;
+        for (int i = l; i <= r; i++) {
+            if (f[i] == 0) cout << i << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
